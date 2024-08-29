@@ -11,6 +11,10 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && \
     sudo apt-get install -y nodejs
 
 
+# Install ffmpeg
+RUN sudo apt-get install -y ffmpeg
+
+
 # installing ngrok
 RUN curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && \
 echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | tee /etc/apt/sources.list.d/ngrok.list && \
@@ -19,7 +23,8 @@ apt update && apt install ngrok
 # Optional: Create a non-root user with sudo privileges
 RUN useradd -ms /bin/bash devuser && \
     echo "devuser:devpassword" | chpasswd && \
-    adduser devuser sudo
+    adduser devuser sudo && \
+    adduser devuser video
 
 # Switch to the non-root user
 USER devuser

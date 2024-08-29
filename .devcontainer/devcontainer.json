@@ -6,6 +6,7 @@
   "runArgs": [
     "--runtime=nvidia",
     "--gpus=all",
+    "--device=/dev/video0",
     "--env-file", ".env"
   ],
   "postCreateCommand": "echo 'Container created and GPU enabled!'",
